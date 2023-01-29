@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int dis(vector<int>&p1 , vector<int>&p2){
+        return abs((p1[0]-p2[0])*(p1[0]-p2[0])) + abs((p1[1]-p2[1])*(p1[1]-p2[1])) ;
+    }
+    bool validSquare(vector<int>& p1, vector<int>& p2, vector<int>& p3, vector<int>& p4) {
+        set<int> st;
+        st.insert(dis(p1,p2));
+        st.insert(dis(p1,p3));
+        st.insert(dis(p1,p4));
+        st.insert(dis(p2,p3));
+        st.insert(dis(p4,p2));
+        st.insert(dis(p3,p4));
+        // here distance can also be 0 if the same point repeats so to avoid this we have take care either the set contains 0 then it will not be a valid square as the two points collides in it 
+        if(!st.count(0) && st.size()==2) return 1;
+        return false;
+    }
+};
